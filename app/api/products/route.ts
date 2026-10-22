@@ -1,0 +1,1 @@
+import {NextResponse} from 'next/server';import {products} from '@/lib/data';export async function GET(){return NextResponse.json(await products(),{headers:{'Cache-Control':'public, s-maxage=30, stale-while-revalidate=60'}})}

@@ -1,0 +1,3 @@
+import {notFound} from 'next/navigation';import {getLocale} from '@/lib/i18n';import {SiteShell} from '@/components/shell';import {CartProvider} from '@/components/cart';
+export function generateStaticParams(){return [{locale:'fa'},{locale:'en'}]}
+export default async function LocaleLayout({children,params}:{children:React.ReactNode;params:Promise<{locale:string}>}){const {locale}=await params;if(!['fa','en'].includes(locale))notFound();const lang=getLocale(locale);return <div lang={lang} dir={lang==='fa'?'rtl':'ltr'}><CartProvider><SiteShell locale={lang}>{children}</SiteShell></CartProvider></div>}
